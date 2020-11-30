@@ -4,6 +4,10 @@ import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -11,20 +15,16 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 
-import aar.websockets.model.Device;
+import aar.websockets.model.KPI;
 
 @ApplicationScoped
 @ServerEndpoint("/actions")
-public class DeviceWebSocketServer {
+public class KPIWebSocketServer {
     
-    private static DeviceSessionHandler sessionHandler = new DeviceSessionHandler();
+    private static KPISessionHandler sessionHandler = new KPISessionHandler();
     
-    public DeviceWebSocketServer() {
+    public KPIWebSocketServer() {
         System.out.println("class loaded " + this.getClass());
     }
     
@@ -42,36 +42,36 @@ public class DeviceWebSocketServer {
 
     @OnError
     public void onError(Throwable error) {
-        Logger.getLogger(DeviceWebSocketServer.class.getName()).
+        Logger.getLogger(KPIWebSocketServer.class.getName()).
                 log(Level.SEVERE, null, error);
     }
 
     @OnMessage
     public void onMessage(String message, Session session) {
+    	System.out.println("llega");
         try (JsonReader reader = Json.createReader(new StringReader(message))) {
             JsonObject jsonMessage = reader.readObject();
-
-            if ("add".equals(jsonMessage.getString("action"))) {
-                Device device = new Device();
-                device.setName(jsonMessage.getString("name"));
-                device.setDescription(jsonMessage.getString("description"));
-                device.setType(jsonMessage.getString("type"));
-                device.setStatus("Off");
-                sessionHandler.addDevice(device);
+            System.out.println("llega");
+            if ("compare".equals(jsonMessage.getString("action"))) {
+            	KPI kpi = new KPI();
+            	kpi.setName(jsonMessage.getString("name1"));
+            	kpi.setType(jsonMessage.getString("type1"));
+            	kpi.setName2(jsonMessage.getString("name2"));
+            	kpi.setType2(jsonMessage.getString("type2"));
+            	sessionHandler.addComparation(kpi);
             }
 
             if ("remove".equals(jsonMessage.getString("action"))) {
                 int id = (int) jsonMessage.getInt("id");
-                sessionHandler.removeDevice(id);
+                sessionHandler.removeKPI(id);
             }
 
             if ("toggle".equals(jsonMessage.getString("action"))) {
                 int id = (int) jsonMessage.getInt("id");
-                sessionHandler.toggleDevice(id);
+                sessionHandler.removeKPI(id);
             }
         } 
     }
-    
     
     
 }
