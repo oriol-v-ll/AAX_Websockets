@@ -10,32 +10,45 @@
     <body>
 
         <div id="wrapper">
-            <h1>Java Websocket Home</h1>
-            <p>Welcome to the Java WebSocket Home. Click the Add a device button to start adding devices.</p>
+            <h1>Key Performance Indicator comparator</h1>
+            <p>Click the button below to select two KPI's to compare</p>
             <br />
             <div id="addDevice">
-                <div class="button"> <a href="#" OnClick="showForm()">Add a device</a> </div>
-                <form id="addDeviceForm">
-                    <h3>Add a new device</h3>
-                    <span>Name: <input type="text" name="device_name" id="device_name"></span>
+                <div class="button"> <a href="#" OnClick="showForm()">COMPARE</a> </div>
+			<form id="addDeviceForm">
+                    <h3>Choose first KPI</h3>
+                    <span>Name: <input type="text" name="device_name1" id="device_name1"></span>
                     <span>Type: 
-                        <select name="device_type" id="device_type">
-                            <option value="Appliance">Appliance</option>
-                            <option value="Electronics">Electronics</option>
-                            <option value="Lights">Lights</option>
-                            <option value="Other">Other</option>
+                        <select name="device_type1" id="device_type1">
+                            <option value="Product Sales">Product Sales</option>
+                            <option value="Product Expenses">Product Expenses</option>
+                            <option value="Return on Assets">Return on Assets</option>
+                            <option value="Product Expenses Budget">Product Expenses Budget</option>
+                            <option value="Product Sales Target">Product Sales Target</option>
+                            <option value="Return on Equity">Return on Equity</option>
+                            <option value="Return on Investment">Return on Investment</option>
+                        </select></span>
+                        
+                    <h3>Choose second KPI</h3>
+                    <span>Name: <input type="text" name="device_name2" id="device_name2"></span>
+                    <span>Type: 
+                        <select name="device_type2" id="device_type2">
+              <option value="Product Sales">Product Sales</option>
+                            <option value="Product Expenses">Product Expenses</option>
+                            <option value="Return on Assets">Return on Assets</option>
+                            <option value="Product Expenses Budget">Product Expenses Budget</option>
+                            <option value="Product Sales Target">Product Sales Target</option>
+                            <option value="Return on Equity">Return on Equity</option>
+                            <option value="Return on Investment">Return on Investment</option>
                         </select></span>
 
-                    <span>Description:<br />
-                        <textarea name="description" id="device_description" rows="2" cols="50"></textarea>
-                    </span>
-
-                    <input type="button" class="button" value="Add" onclick=formSubmit()>
+			<br /><br />
+                    <input type="button" class="button" value="Compare" onclick=formSubmit()>
                     <input type="reset" class="button" value="Cancel" onclick=hideForm()>
                 </form>
             </div>
             <br />
-            <h3>Currently connected devices:</h3>
+            <h3>Currently compared KPI's:</h3>
             <div id="content">
             </div>
         </div>
