@@ -8,37 +8,70 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+    
+    <div id='cssmenu'>
+		<ul>
+			<li class='profile'>
+			</li>
+			<li class="Logo" ><a href='index.html'><img id="LogoImage" src=""></img> </a></li>
+			<li class="Logo" ><div id="espaciador" ></div></li>
+			<li class='active'><a class='menu' href='index.html'><span>Inici</span></a></li>
+			
+		   
+		</ul>
+	</div>
+	
+	<br><br><br><br><br><br>
+	<div id="EspaciadorLogin"></div>
+	
 
         <div id="wrapper">
-            <h1>Java Websocket Home</h1>
-            <p>Welcome to the Java WebSocket Home. Click the Add a device button to start adding devices.</p>
+            <h1>Key Performance Indicator comparator</h1>
+            <p>Click the button below to select two KPI's to compare</p>
             <br />
             <div id="addDevice">
-                <div class="button"> <a href="#" OnClick="showForm()">Add a device</a> </div>
-                <form id="addDeviceForm">
-                    <h3>Add a new device</h3>
+                <div class="button"> <a href="#" OnClick="showForm()">COMPARE</a> </div>
+                <div id="addDeviceForm">
+                <form id="addKPIform">
+                    <h3>Choose first KPI</h3>
                     <span>Name: <input type="text" name="device_name" id="device_name"></span>
                     <span>Type: 
                         <select name="device_type" id="device_type">
-                            <option value="Appliance">Appliance</option>
-                            <option value="Electronics">Electronics</option>
-                            <option value="Lights">Lights</option>
-                            <option value="Other">Other</option>
+                            <option value="Appliance">Product Sales</option>
+                            <option value="Electronics">Product Expenses</option>
+                            <option value="Lights">Return on Assets</option>
+                            <option value="Other">Product Expenses Budget</option>
+                            <option value="Appliance">Product Sales Target</option>
+                            <option value="Appliance">Return on Equity</option>
+                            <option value="Appliance">Return on Investment</option>
+                        </select></span>
+                        
+                    <h3>Choose second KPI</h3>
+                    <span>Name: <input type="text" name="device_name2" id="device_name2"></span>
+                    <span>Type: 
+                        <select name="device_type" id="device_type">
+                            <option value="Appliance">Product Sales</option>
+                            <option value="Electronics">Product Expenses</option>
+                            <option value="Lights">Return on Assets</option>
+                            <option value="Other">Product Expenses Budget</option>
+                            <option value="Appliance">Product Sales Target</option>
+                            <option value="Appliance">Return on Equity</option>
+                            <option value="Appliance">Return on Investment</option>
                         </select></span>
 
-                    <span>Description:<br />
-                        <textarea name="description" id="device_description" rows="2" cols="50"></textarea>
-                    </span>
 
-                    <input type="button" class="button" value="Add" onclick=formSubmit()>
+                    <input type="button" class="button" value="Compare" onclick=formSubmit()>
                     <input type="reset" class="button" value="Cancel" onclick=hideForm()>
                 </form>
+                </div>
             </div>
             <br />
-            <h3>Currently connected devices:</h3>
+            <h3>Currently compared KPI's:</h3>
             <div id="content">
             </div>
         </div>
-
+	<footer>
+		Oriol Villanova Llorens | www.oriolvillanova.com &copy;
+	</footer>
     </body>
 </html>

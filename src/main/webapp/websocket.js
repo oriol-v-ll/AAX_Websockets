@@ -30,6 +30,16 @@ function addDevice(name, type, description) {
     };
     socket.send(JSON.stringify(DeviceAction));
 }
+function addComparation(name1, name2, type1, type2){
+	var CompareKPI = {
+        action: "compare",
+        name1: name1,
+        type1: type1,
+        name2: name2,
+        type2: type2,
+    }; 
+ socket.send(JSON.stringify(CompareKPI));
+}
 
 function removeDevice(element) {
     var id = element;

@@ -4,6 +4,10 @@ import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -11,19 +15,16 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-
 import aar.websockets.model.Device;
+import aar.websockets.model.KPI;
 
-
-public class DeviceWebSocketServer {
+@ApplicationScoped
+@ServerEndpoint("/actions")
+public class KPIWebSocketServer {
     
-    private static DeviceSessionHandler sessionHandler = new DeviceSessionHandler();
+    private static KPISessionHandler sessionHandler = new KPISessionHandler();
     
-    public DeviceWebSocketServer() {
+    public KPIWebSocketServer() {
         System.out.println("class loaded " + this.getClass());
     }
     
@@ -51,12 +52,13 @@ public class DeviceWebSocketServer {
             JsonObject jsonMessage = reader.readObject();
 
             if ("add".equals(jsonMessage.getString("action"))) {
-                Device device = new Device();
-                device.setName(jsonMessage.getString("name"));
-                device.setDescription(jsonMessage.getString("description"));
-                device.setType(jsonMessage.getString("type"));
-                device.setStatus("Off");
-                sessionHandler.addDevice(device);
+                KPI kpi = new KPI();
+                
+                
+                kpi.setName(jsonMessage.getString("name"));
+                kpi.setDescription(jsonMessage.getString("description"));
+                kpi.setType(jsonMessage.getString("type"));
+                sessionHandler.addDevice(kpi);
             }
 
             if ("remove".equals(jsonMessage.getString("action"))) {
@@ -70,7 +72,6 @@ public class DeviceWebSocketServer {
             }
         } 
     }
-    
     
     
 }

@@ -11,7 +11,7 @@ import javax.json.spi.JsonProvider;
 import javax.websocket.Session;
 import aar.websockets.model.Device;
 
-@ApplicationScoped
+
 public class DeviceSessionHandler {
     private int deviceId = 0;
     private final Set<Session> sessions = new HashSet<>();
@@ -42,6 +42,7 @@ public class DeviceSessionHandler {
         devices.add(device);
         deviceId++;
         JsonProvider provider = JsonProvider.provider();
+        
         JsonObject addMessage = provider.createObjectBuilder()
                 .add("action", "add")
                 .add("id", device.getId())
