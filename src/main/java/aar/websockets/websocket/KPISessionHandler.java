@@ -116,6 +116,7 @@ public class KPISessionHandler {
 	    }
 	    
 
+	    
 	    private KPI getKPIById(int id) {
 	        for (KPI kpi : Kpis) {
 	            if (kpi.getId() == id) {
