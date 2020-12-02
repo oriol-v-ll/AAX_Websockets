@@ -9,7 +9,7 @@ public class KPI {
     private String suscrito;
     private String type;
     private String type2;
-    private String description;
+    private String comparacion;
     
     
     
@@ -40,14 +40,14 @@ public class KPI {
 		this.name = name;
 		this.suscrito = suscrito;
 		this.type = type;
-		this.description = description;
+		this.comparacion = description;
 	}
     
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((comparacion == null) ? 0 : comparacion.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((suscrito == null) ? 0 : suscrito.hashCode());
@@ -65,10 +65,10 @@ public class KPI {
 		if (getClass() != obj.getClass())
 			return false;
 		KPI other = (KPI) obj;
-		if (description == null) {
-			if (other.description != null)
+		if (comparacion == null) {
+			if (other.comparacion != null)
 				return false;
-		} else if (!description.equals(other.description))
+		} else if (!comparacion.equals(other.comparacion))
 			return false;
 		if (id != other.id)
 			return false;
@@ -95,7 +95,7 @@ public class KPI {
 	@Override
 	public String toString() {
 		return "KPI [id=" + id + ", valor=" + valor + ", name=" + name + ", name2=" + name2 + ", suscrito=" + suscrito
-				+ ", type=" + type + ", type2=" + type2 + ", description=" + description + "]";
+				+ ", type=" + type + ", type2=" + type2 + ", description=" + comparacion + "]";
 	}
 	public int getId() {
 		return id;
@@ -128,10 +128,10 @@ public class KPI {
 		this.type = type;
 	}
 	public String getDescription() {
-		return description;
+		return comparacion;
 	}
 	public void setDescription(String description) {
-		this.description = description;
+		this.comparacion = description;
 	}
 
     

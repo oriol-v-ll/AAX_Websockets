@@ -28,10 +28,13 @@ public class KPIWebSocketServer {
         System.out.println("class loaded " + this.getClass());
     }
     
+  
+    
     @OnOpen
     public void onOpen(Session session) {
         sessionHandler.addSession(session);
         System.out.println("cliente suscrito, sesion activa");
+        
     }
 
     @OnClose
@@ -51,7 +54,7 @@ public class KPIWebSocketServer {
     	System.out.println("llega");
         try (JsonReader reader = Json.createReader(new StringReader(message))) {
             JsonObject jsonMessage = reader.readObject();
-            System.out.println("llega");
+            System.out.println("llega2");
             if ("compare".equals(jsonMessage.getString("action"))) {
             	KPI kpi = new KPI();
             	kpi.setName(jsonMessage.getString("name1"));
@@ -59,11 +62,13 @@ public class KPIWebSocketServer {
             	kpi.setName2(jsonMessage.getString("name2"));
             	kpi.setType2(jsonMessage.getString("type2"));
             	sessionHandler.addComparation(kpi);
+            	sessionHandler.generarValor();
             }
 
             if ("remove".equals(jsonMessage.getString("action"))) {
                 int id = (int) jsonMessage.getInt("id");
                 sessionHandler.removeKPI(id);
+                System.out.println("llega3");
             }
 
             if ("toggle".equals(jsonMessage.getString("action"))) {

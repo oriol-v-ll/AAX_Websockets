@@ -20,8 +20,50 @@ public class KPISessionHandler {
 	    private final Set<Session> sessions = new HashSet<>();
 	    private final Set<KPI> Kpis = new HashSet<>();
 	    
+	    public void enviarValorAleatorio() {
+	    	int numero = (int)(Math.random()*100+1);
+	    	JsonProvider provider = JsonProvider.provider();
+	        for (KPI kpi : Kpis) {
+	            JsonObject addMessage = provider.createObjectBuilder()
+		                .add("action", "add")
+		                .add("id", kpi.getId())
+		                .add("name", kpi.getName())
+		                .add("type", kpi.getType())
+		                .add("name2", kpi.getName2())
+		                .add("type2", kpi.getType2())
+		                .add("comparacion", numero)
+		                .build();
+	            sendToAllConnectedSessions(addMessage);
+	        }
+	 
+	    }
+	    
+	    
+	    public int calcularValor() {
+	    	int numero = (int)(Math.random()*100+1);
+	    	return numero;
+	    }
+	    public void generarValor() {
+	    	@SuppressWarnings("unused")
+			Runnable runnable = new Runnable() {
+	    		  @Override
+	    		  public void run() {	    		    
+	    		    while (true) {    		      
+	    		      try {	    		        
+	    		        Thread.sleep(1000);	    		      
+	    		        System.out.println("Me imprimo cada segundo");
+	    		        enviarValorAleatorio();
+	    		      } catch (InterruptedException e) {
+	    		        e.printStackTrace();
+	    		      }
+	    		    }
+	    		  }
+	    		};
+	    	
+	    }
 	    public void addSession(Session session) {
 	        sessions.add(session);
+	        int valor = calcularValor();
 	        JsonProvider provider = JsonProvider.provider();
 	        for (KPI kpi : Kpis) {
 	            JsonObject addMessage = provider.createObjectBuilder()
@@ -31,6 +73,7 @@ public class KPISessionHandler {
 		                .add("type", kpi.getType())
 		                .add("name2", kpi.getName2())
 		                .add("type2", kpi.getType2())
+		                .add("comparacion", valor)
 		                .build();
 	            sendToSession(session, addMessage);
 	        }
@@ -44,6 +87,7 @@ public class KPISessionHandler {
 	    	kpi.setId(deviceId);
 	        Kpis.add(kpi);
 	        deviceId++;
+	        int valor = calcularValor();
 	        JsonProvider provider = JsonProvider.provider();
 	        JsonObject addMessage = provider.createObjectBuilder()
 	                .add("action", "add")
@@ -52,11 +96,13 @@ public class KPISessionHandler {
 	                .add("type", kpi.getType())
 	                .add("name2", kpi.getName2())
 	                .add("type2", kpi.getType2())
+	                .add("comparacion", valor)
 	                .build();
 	        sendToAllConnectedSessions(addMessage); 
 	        
 	    }
 	    public void removeKPI(int id) {
+	    	System.out.println("llega4");
 	    	KPI kpi = getKPIById(id);
 	        if (kpi != null) {
 	        	Kpis.remove(kpi);

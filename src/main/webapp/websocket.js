@@ -2,10 +2,12 @@ window.onload = init;
 var socket = new WebSocket("ws://localhost:8080/websocketexample/actions");
 socket.onmessage = onMessage;
 
+
+
 function onMessage(event) {
     var device = JSON.parse(event.data);
     if (device.action === "add") {
-        printDeviceElement(device);
+    	printKPIComparationElement(device);
     }
     if (device.action === "remove") {
         document.getElementById(device.id).remove();
@@ -58,7 +60,7 @@ function printKPIComparationElement(kpi){
     kpiDiv.appendChild(kpiName1);
 
     var kpiType = document.createElement("span");
-    kpiType.innerHTML = "<b>Type:</b> " + device.type;
+    kpiType.innerHTML = "<b>Type:</b> " + kpi.type;
     kpiDiv.appendChild(kpiType);
     
     var kpiName2 = document.createElement("span");
@@ -66,8 +68,13 @@ function printKPIComparationElement(kpi){
     kpiName2.innerHTML = kpi.name2;
     kpiDiv.appendChild(kpiName2);
     
+    var kpiComparation = document.createElement("span");
+    kpiComparation.setAttribute("class", "comparation");
+    kpiComparation.innerHTML = kpi.comparation;
+    kpiDiv.appendChild(kpiName2);
+    
     var kpiType = document.createElement("span");
-    kpiType.innerHTML = "<b>Type:</b> " + device.type2;
+    kpiType.innerHTML = "<b>Type:</b> " + kpi.type2;
     kpiDiv.appendChild(kpiType);
     
     /*Creación del sistema del numero aleatorio + hora*/
@@ -81,6 +88,7 @@ function printKPIComparationElement(kpi){
     
 	
 }
+
 
 function showForm() {
     document.getElementById("addDeviceForm").style.display = '';
@@ -101,17 +109,10 @@ function formSubmit() {
     addComparation(name1,name2,type1,type2);
 }
 
-function formSubmit() {
-	hideForm();
-    var form = document.getElementById("addDeviceForm");
-    var name = form.elements["device_name"].value;
-    var type = form.elements["device_type"].value;
-    var description = form.elements["device_description"].value;
-    
-    document.getElementById("addDeviceForm").reset();
-    addDevice(name, type, description);
-}
 
+function form(){
+
+}
 function init() {
     hideForm();
 }
