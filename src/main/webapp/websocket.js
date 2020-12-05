@@ -5,22 +5,20 @@ socket.onmessage = onMessage;
 
 
 function onMessage(event) {
-    var device = JSON.parse(event.data);
-    if (device.action === "add") {
-    	printKPIComparationElement(device);
+    var kpi = JSON.parse(event.data);
+    if (kpi.action === "add") {
+    	printKPIComparationElement(kpi);
     }
-    if (device.action === "remove") {
-        document.getElementById(device.id).remove();
+    if (kpi.action === "remove") {
+        document.getElementById(kpi.id).remove();
     }
-    if (device.action === "toggle") {
-        var node = document.getElementById(device.id);
-        var statusText = node.children[2];
-        if (device.status === "On") {
-            statusText.innerHTML = "Status: " + device.status + " (<a href=\"#\" OnClick=toggleDevice(" + device.id + ")>Turn off</a>)";
-        } else if (device.status === "Off") {
-            statusText.innerHTML = "Status: " + device.status + " (<a href=\"#\" OnClick=toggleDevice(" + device.id + ")>Turn on</a>)";
-        }
+    if (kpi.action === "actualizar") {
+        var node = document.getElementById("comp"+kpi.id);
+        var comparationText = node.children[4];
+        comparationText = "<b>ComparaciónActualizada:</b> " + kpi.comparacion;;
     }
+    
+
 }
 
 
@@ -50,7 +48,7 @@ function printKPIComparationElement(kpi){
 	var content = document.getElementById("content");
 	
 	var kpiDiv = document.createElement("div");
-	kpiDiv.setAttribute("id", kpiDiv.id);
+	kpiDiv.setAttribute("id", kpi.id);
 	kpiDiv.setAttribute("class", "kpi" + kpi.type);
     content.appendChild(kpiDiv);
     
@@ -68,18 +66,18 @@ function printKPIComparationElement(kpi){
     kpiName2.innerHTML = kpi.name2;
     kpiDiv.appendChild(kpiName2);
     
-    var kpiComparation = document.createElement("span");
-    kpiComparation.setAttribute("class", "comparation");
-    kpiComparation.innerHTML = kpi.comparation;
-    kpiDiv.appendChild(kpiName2);
+ 
     
     var kpiType = document.createElement("span");
     kpiType.innerHTML = "<b>Type:</b> " + kpi.type2;
     kpiDiv.appendChild(kpiType);
     
-    /*Creación del sistema del numero aleatorio + hora*/
+    var kpiComparation = document.createElement("span");
+    kpiComparation.setAttribute("id", "comp"+kpi.id);
+    kpiComparation.innerHTML = "<b>Comparación:</b> " + kpi.comparacion;
+    kpiDiv.appendChild(kpiComparation);
     
-    /*Creación del sistema del numero aleatorio + hora*/
+  
     
     var removeKpi = document.createElement("span");
     removeKpi.setAttribute("class", "removeKpi");

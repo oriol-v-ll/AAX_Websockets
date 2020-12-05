@@ -1,7 +1,11 @@
 package aar.websockets.websocket;
 
 import java.io.IOException;
+
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,53 +18,67 @@ import javax.websocket.Session;
 
 import aar.websockets.model.KPI;
 
+
 @ApplicationScoped
 public class KPISessionHandler {
-	 private int deviceId = 0;
-	    private final Set<Session> sessions = new HashSet<>();
-	    private final Set<KPI> Kpis = new HashSet<>();
+	 	private int deviceId = 0;
+	    private final static Set<Session> sessions = new HashSet<>();
+	    private final static Set<KPI> Kpis = new HashSet<>();
+	    private int TIEMPO = 1000; //en milisegundos
 	    
-	    public void enviarValorAleatorio() {
-	    	int numero = (int)(Math.random()*100+1);
+	    public  KPISessionHandler() {
+	    	 System.out.println("hello world!");
+	    	 //Thread
+	    	 main();
+	    }
+	    public void main() {
+	    	 Runnable runnable = new Runnable() {
+	    		 @Override
+	    		 public void run() {
+	    			 while (true) {
+	    				 try {
+	    					 Thread.sleep(TIEMPO);
+	    					 KPISessionHandler.actualizarValorAleatorio();
+	    				 }catch (InterruptedException e) {
+	    					 e.printStackTrace();
+	    				 }
+	    			 }
+	    		 }
+	    	 };
+	    	 
+	    	 new Thread(runnable).start();
+	    }
+	
+	    public String  fechaSistema() {
+	        Calendar cal=Calendar.getInstance();
+	        java.util.Date date=cal.getTime();
+	        DateFormat dateFormatter=DateFormat.getDateInstance(DateFormat. FULL, Locale.getDefault());
+	        String fecha=dateFormatter.format(date); 
+	        return fecha;
+	    }
+	    
+	    public static void actualizarValorAleatorio() {
+			System.out.println("Actualización de comparacion");
+			int numero = calcularValor();
+			
 	    	JsonProvider provider = JsonProvider.provider();
 	        for (KPI kpi : Kpis) {
+
 	            JsonObject addMessage = provider.createObjectBuilder()
-		                .add("action", "add")
+		                .add("action", "actualizar")
 		                .add("id", kpi.getId())
-		                .add("name", kpi.getName())
-		                .add("type", kpi.getType())
-		                .add("name2", kpi.getName2())
-		                .add("type2", kpi.getType2())
 		                .add("comparacion", numero)
 		                .build();
 	            sendToAllConnectedSessions(addMessage);
 	        }
 	 
 	    }
-	    
-	    
-	    public int calcularValor() {
+	    	    
+	    public static int calcularValor() {
 	    	int numero = (int)(Math.random()*100+1);
 	    	return numero;
 	    }
-	    public void generarValor() {
-	    	@SuppressWarnings("unused")
-			Runnable runnable = new Runnable() {
-	    		  @Override
-	    		  public void run() {	    		    
-	    		    while (true) {    		      
-	    		      try {	    		        
-	    		        Thread.sleep(1000);	    		      
-	    		        System.out.println("Me imprimo cada segundo");
-	    		        enviarValorAleatorio();
-	    		      } catch (InterruptedException e) {
-	    		        e.printStackTrace();
-	    		      }
-	    		    }
-	    		  }
-	    		};
-	    	
-	    }
+	    
 	    public void addSession(Session session) {
 	        sessions.add(session);
 	        int valor = calcularValor();
@@ -101,8 +119,9 @@ public class KPISessionHandler {
 	        sendToAllConnectedSessions(addMessage); 
 	        
 	    }
-	    public void removeKPI(int id) {
-	    	System.out.println("llega4");
+	    
+	    public  void removeKPI(int id) {
+	    	System.out.println("KPI Eliminada");
 	    	KPI kpi = getKPIById(id);
 	        if (kpi != null) {
 	        	Kpis.remove(kpi);
@@ -114,10 +133,9 @@ public class KPISessionHandler {
 	            sendToAllConnectedSessions(removeMessage);
 	        } 
 	    }
-	    
 
-	    
-	    private KPI getKPIById(int id) {
+
+	    private  KPI getKPIById(int id) {
 	        for (KPI kpi : Kpis) {
 	            if (kpi.getId() == id) {
 	                return kpi;
@@ -126,13 +144,13 @@ public class KPISessionHandler {
 	        return null;
 	    }
 	    
-	    private void sendToAllConnectedSessions(JsonObject message) {  
+	    public static void sendToAllConnectedSessions(JsonObject message) {  
 	        for (Session session : sessions) {
 	            sendToSession(session, message);
 	        }
 	    }
 
-	    private void sendToSession(Session session, JsonObject message) {
+	    public static void sendToSession(Session session, JsonObject message) {
 	        try {
 	            session.getBasicRemote().sendText(message.toString());
 	        } catch (IOException ex) {

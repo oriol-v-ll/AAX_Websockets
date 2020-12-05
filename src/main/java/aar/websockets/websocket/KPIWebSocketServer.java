@@ -62,15 +62,12 @@ public class KPIWebSocketServer {
             	kpi.setName2(jsonMessage.getString("name2"));
             	kpi.setType2(jsonMessage.getString("type2"));
             	sessionHandler.addComparation(kpi);
-            	sessionHandler.generarValor();
             }
-
             if ("remove".equals(jsonMessage.getString("action"))) {
                 int id = (int) jsonMessage.getInt("id");
                 sessionHandler.removeKPI(id);
-                System.out.println("llega3");
+                System.out.println(id);
             }
-
             if ("toggle".equals(jsonMessage.getString("action"))) {
                 int id = (int) jsonMessage.getInt("id");
                 sessionHandler.removeKPI(id);
