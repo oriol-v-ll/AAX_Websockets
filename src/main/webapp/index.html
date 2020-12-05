@@ -8,14 +8,27 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+    
+    <div id='cssmenu'>
+		<ul>
+			<li class='profile'>
+			</li>
+			<li class="Logo" ><a href='index.html'><img id="LogoImage" src="logo.png"></img> </a></li>
+			<li class="Logo" ><div id="espaciador" ></div></li>
+			<li class='active'><a class='menu' href='index.html'><span>Start</span></a></li>
+   			<li class='last'><a class='menu' href='http://www.oriolvillanova.com/' target="_blank"><span>Author</span></a></li>
+		</ul>
+	</div>
+	<br><br><br><br><br><br>
+	<div id="EspaciadorLogin"></div>
 
         <div id="wrapper">
             <h1>Key Performance Indicator comparator</h1>
             <p>Click the button below to select two KPI's to compare</p>
             <br />
-            <div id="addDevice">
+            <div id="addKPI">
                 <div class="button"> <a href="#" OnClick="showForm()">COMPARE</a> </div>
-			<form id="addDeviceForm">
+			<form id="addKPIForm">
                     <h3>Choose first KPI</h3>
                     <span>Name: <input type="text" name="device_name1" id="device_name1"></span>
                     <span>Type: 
@@ -52,6 +65,8 @@
             <div id="content">
             </div>
         </div>
-
+<footer>
+		<p >Oriol Villanova Llorens | oriol.villanova@estudiants.urv.cat &copy; </p>
+</footer>
     </body>
 </html>

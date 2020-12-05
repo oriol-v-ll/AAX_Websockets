@@ -1,137 +1,340 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
+
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 80%;
-    background-color: #1f1f1f;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 80%;
+	background-color: grey;
 }
 
 #wrapper {
-    width: 960px;
-    margin: auto;
-    text-align: left;
-    color: #d9d9d9;
+	width: 960px;
+	margin: auto;
+	text-align: left;
+	color: #d9d9d9;
 }
 
 p {
-    text-align: left;
+	text-align: left;
+}
+
+#content div {
+	border: 2px solid black;
+	border-radius: 5px;
+	margin: 8px 8px;
+	color: black;
+	background-color: #798286;
 }
 
 .button {
-    display: inline;
-    color: #fff;
-    background-color: #f2791d;
-    padding: 8px;
-    margin: auto;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    box-shadow: none;
-    border: none;
+	display: inline;
+	color: #fff;
+	background-color: #212732;
+	padding: 8px;
+	margin: auto;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	box-shadow: none;
+	border: none;
 }
 
 .button:hover {
-    background-color: #ffb15e;
+	background-color: #D3D3D3;
 }
+
 .button a, a:visited, a:hover, a:active {
-    color: #fff;
-    text-decoration: none;
+	color: #fff;
+	text-decoration: none;
 }
 
-#addDevice {
-    text-align: center;
-    width: 960px;
-    margin: auto;
-    margin-bottom: 10px;
+#addKPI {
+	text-align: center;
+	width: 960px;
+	margin: auto;
+	margin-bottom: 10px;
 }
 
-#addDeviceForm {
-    text-align: left;
-    width: 400px;
-    margin: auto;
-    padding: 10px;
+#addKPIForm {
+	text-align: left;
+	width: 400px;
+	margin: auto;
+	padding: 10px;
 }
 
-#addDeviceForm span {
-    display: block;
+#addKPIForm span {
+	display: block;
 }
 
 #content {
-    margin: auto;
-    width: 960px;
+	margin: auto;
+	width: 960px;
 }
 
-.device {
-    width: 180px;
-    height: 110px;
-    margin: 10px;
-    padding: 16px;
-    color: #fff;
-    vertical-align: top;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    display: inline-block;
+.kpi {
+	width: 180px;
+	height: 110px;
+	margin: 10px;
+	padding: 16px;
+	color: #fff;
+	vertical-align: top;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	display: inline-block;
 }
 
-.device.off {
-    background-color: #c8cccf;
+.kpi.off {
+	background-color: #c8cccf;
 }
 
-.device span {
-    display: block;
+.kpi span {
+	display: block;
 }
 
-.deviceName {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 12px;
+.kpiName1 {
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 12px;
+}
+
+.kpiName2 {
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 12px;
 }
 
 .removeDevice {
-    margin-top: 12px;
-    text-align: center;
+	margin-top: 12px;
+	text-align: center;
 }
 
-.device.Appliance {
-    background-color: #5eb85e;
+.kpi a {
+	text-decoration: none;
 }
 
-.device.Appliance a:hover {
-    color: #a1ed82;
+.kpi a:visited, a:active, a:hover {
+	color: #fff;
 }
 
-.device.Electronics {   
-    background-color: #0f90d1;
+.kpi a:hover {
+	text-decoration: underline;
 }
 
-.device.Electronics a:hover {
-    color: #4badd1;
+#cssmenu ul li a {
+	color: #ffffff;
 }
 
-.device.Lights {
-    background-color: #c2a00c;
+#cssmenu ul li.Logo a {
+	color: #D3D3D3;
 }
 
-.device.Lights a:hover {
-    color: #fad232;
+#cssmenu ul li.active {
+	background: #D3D3D3;
 }
 
-.device.Other {
-    background-color: #db524d;
+#cssmenu ul li.active a {
+	color: #1F2833;
 }
 
-.device.Other a:hover {
-    color: #ff907d;
+#cssmenu {
+	background: #1F2833;
 }
 
-.device a {
-    text-decoration: none;
+#cssmenu ul li.Logo {
+	
 }
 
-.device a:visited, a:active, a:hover {
-    color: #fff;
+#cssmenu ul li.active {
+	
 }
 
-.device a:hover {
-    text-decoration: underline;
+#cssmenu {
+	margin: 0px 0px;
+	width: 100%;
+	/*padding: 80px 0px;*/
+	position: fixed;
+	box-shadow: 0px 10px 9px -4px rgba(0, 0, 0, 0.49);
 }
 
+#cssmenu ul {
+	list-style: none;
+	margin: 0px 0px;
+	padding: 0px 0px;
+	line-height: 1;
+	display: block;
+	zoom: 1;
+}
+
+#cssmenu ul li {
+	display: inline-block;
+	padding: 0pxg;
+	margin: 0px;
+}
+
+#cssmenu ul li a.menu {
+	text-decoration: none;
+	display: block;
+	padding: 40px 40px;
+	margin: 0px 0px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	text-transform: uppercase; /* a mayusculas */
+	font-size: 17px;
+	position: relative;
+	transition: color .25s;
+}
+
+#cssmenu ul li a.menu:hover:before {
+	width: 100%;
+}
+
+#cssmenu ul li a.menu:before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 3px;
+	width: 0;
+	transition: .25s;
+}
+
+#cssmenu ul li.profile {
+	float: right;
+	weight: auto;
+}
+
+.footer {
+	position: fixed;
+	left: 20px;
+	bottom: 0;
+}
+
+
+
+@media screen and (pointer: coarse) and (orientation: portrait) , screen
+	and (max-width: 1200px) {
+	
+	#cssmenu ul li {
+		float: none;
+		display: block;
+	}
+	#cssmenu ul li a {
+		width: 100%;
+		text-align: center;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		border-bottom: 1px solid #c5c6c7;
+	}
+	#espaciador {
+		height: 125px;
+	}
+	#EspaciadorLogin {
+		height: 125px;
+	}
+	#cssmenu ul li.last>a, /* elimina la barra del ultimo elemento*/
+		#cssmenu ul li:last-child>a {
+		border: 0;
+	}
+	#cssmenu ul li a:after {
+		display: none;
+	}
+	#cssmenu ul li a:before {
+		display: none;
+	}
+}
+
+@media screen and (pointer: coarse) and (orientation: portrait) {
+	#cssmenu ul {
+		zoom: 1.5;
+	}
+	#login {
+		zoom: 2.5;
+	}
+	#cssmenu ul li.Logo a {
+		padding: 50px 0%;
+		margin: 0% 0%;
+	}
+	#EspaciadorLogin {
+		height: 125px;
+	}
+}
+
+@media screen and (max-width: 950px) {
+	#cssmenu ul li.Logo a {
+		padding: 50px 0%;
+		margin: 0% 0%;
+	}
+	#EspaciadorLogin {
+		padding: 160px 0%;
+		margin: 0% 0%;
+	}
+}
+
+#LogoImage {
+	margin: 0px 0px;
+	padding: 0px 0px;
+	width: 90px;
+	height: 75px;
+	position: absolute;
+	top: 15px;
+	left: 25px;
+	/*background-color: blue;*/
+}
+
+.carousel {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	right: 5px;
+	margin-top: 5px;
+}
+
+#imagen {
+	width: 100px;
+	height: 100px;
+	background-size: cover;
+	overflow: visible;
+}
+
+.controles {
+	display: block;
+	text-align: center;
+}
+
+#picture {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+#cssmenu ul li a.menu:hover {
+	color: #66FCF1;
+}
+
+#cssmenu ul li a.menu:before {
+	background: #66FCF1;
+}
+
+#username {
+	color: #66FCF1;
+}
+
+#profile_image {
+	border-color: #66FCF1;
+}
+
+#LoginButton {
+	background: #296662;
+	color: white;
+}
+#espaciador{
+
+	width: 150px;
+	height: 0px;
+	
+}
