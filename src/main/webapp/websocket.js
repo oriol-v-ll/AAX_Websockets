@@ -6,6 +6,7 @@ socket.onmessage = onMessage;
 
 function onMessage(event) {
     var kpi = JSON.parse(event.data);
+    
     if (kpi.action === "add") {
     	printKPIComparationElement(kpi);
     }
@@ -13,9 +14,10 @@ function onMessage(event) {
         document.getElementById(kpi.id).remove();
     }
     if (kpi.action === "actualizar") {
-        var node = document.getElementById("comp"+kpi.id);
+        var node = document.getElementById(kpi.id);
         var comparationText = node.children[4];
-        comparationText = "<b>ComparaciónActualizada:</b> " + kpi.comparacion;;
+        comparationText.innerHTML = "<b>Comparación:</b> " + kpi.comparacion;
+       
     }
     
 
@@ -65,9 +67,7 @@ function printKPIComparationElement(kpi){
     kpiName2.setAttribute("class", "kpiName2");
     kpiName2.innerHTML = kpi.name2;
     kpiDiv.appendChild(kpiName2);
-    
- 
-    
+
     var kpiType = document.createElement("span");
     kpiType.innerHTML = "<b>Type:</b> " + kpi.type2;
     kpiDiv.appendChild(kpiType);

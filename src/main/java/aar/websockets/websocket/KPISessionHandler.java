@@ -24,7 +24,7 @@ public class KPISessionHandler {
 	 	private int deviceId = 0;
 	    private final static Set<Session> sessions = new HashSet<>();
 	    private final static Set<KPI> Kpis = new HashSet<>();
-	    private int TIEMPO = 1000; //en milisegundos
+	    private int TIEMPO = 5000; //en milisegundos
 	    
 	    public  KPISessionHandler() {
 	    	 System.out.println("hello world!");
