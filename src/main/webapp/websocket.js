@@ -1,3 +1,9 @@
+/**
+ * websockets.js 
+ * 
+ * Funciones javascript para recibo de mensajes, la muestra de estos y el envio
+ * 
+ */
 window.onload = init;
 var socket = new WebSocket("ws://localhost:8080/websocketexample/actions");
 socket.onmessage = onMessage;
@@ -110,8 +116,13 @@ function formSubmit() {
     var name2 = form.elements["device_name2"].value;
     var type2 = form.elements["device_type2"].value;
     hideForm();
-    document.getElementById("addKPIForm").reset();
-    addComparation(name1,name2,type1,type2);
+    if (type1 === type2){
+    	alert("No puedes comparar dos KPI iguales");
+    }else{
+        document.getElementById("addKPIForm").reset();
+        addComparation(name1,name2,type1,type2);
+    }
+
 }
 
 

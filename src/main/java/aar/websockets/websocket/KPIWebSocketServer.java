@@ -1,3 +1,7 @@
+/**
+ * Classe para crear connexión con el websocket
+ * 
+ */
 package aar.websockets.websocket;
 
 import java.io.StringReader;
@@ -51,10 +55,8 @@ public class KPIWebSocketServer {
 
     @OnMessage
     public void onMessage(String message, Session session) {
-    	System.out.println("llega");
         try (JsonReader reader = Json.createReader(new StringReader(message))) {
             JsonObject jsonMessage = reader.readObject();
-            System.out.println("llega2");
             if ("compare".equals(jsonMessage.getString("action"))) {
             	KPI kpi = new KPI();
             	kpi.setName(jsonMessage.getString("name1"));
@@ -68,10 +70,7 @@ public class KPIWebSocketServer {
                 sessionHandler.removeKPI(id);
                 System.out.println(id);
             }
-            if ("toggle".equals(jsonMessage.getString("action"))) {
-                int id = (int) jsonMessage.getInt("id");
-                sessionHandler.removeKPI(id);
-            }
+
         } 
     }
     

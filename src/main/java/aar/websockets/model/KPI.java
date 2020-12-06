@@ -1,3 +1,8 @@
+/**
+ * 
+ * Classe que guarda la comparación de las KPI 
+ * 
+ */
 package aar.websockets.model;
 
 public class KPI {

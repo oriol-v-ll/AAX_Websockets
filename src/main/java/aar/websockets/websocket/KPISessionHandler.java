@@ -1,3 +1,7 @@
+/**
+ * Clase para gestionar los eventos que vengan por el websocket.
+ * 
+ */
 package aar.websockets.websocket;
 
 import java.io.IOException;
